@@ -1,0 +1,24 @@
+import requests
+from bs4 import BeautifulSoup
+import json
+
+def scrape_amazon():
+    url = 'https://www.amazon.com/s?k=whole+beans+coffee&crid=32YRSB2299EIQ&sprefix=whole+beans%2Caps%2C125&ref=nb_sb_ss_ts-doa-p_1_11'
+    response = requests.get(url)
+    html_content = response.content
+    print(html_content)  # add this line to print the HTML content
+    soup = BeautifulSoup(html_content, 'html.parser')
+    products = []
+    for item in soup.find_all('div', {'class': 's-result-item'}):
+        product = {}
+        product['name'] = item.find('h2').text.strip()
+        product['price'] = item.find('span', {'class': 'a-offscreen'}).text.strip()
+        product['rating'] = item.find('span', {'class': 'a-icon-alt'}).text.strip()
+        product['rating_count'] = item.find('span', {'class': 'a-size-base'}).text.strip()
+        product['eligible_for_coupon'] = item.find('span', {'class': 's-coupon-unclipped-badge'}).text.strip() if item.find('span', {'class': 's-coupon-unclipped-badge'}) else None
+        products.append(product)
+    print(products)  # add this line to print the list of products
+    response = {'products': products}
+    return json.dumps(response)
+
+print(scrape_amazon())

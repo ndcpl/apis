@@ -1,0 +1,33 @@
+# Craps table game
+
+
+import random
+
+class Dice():
+    def roll(self):
+        return random.randint(1, 6)
+
+dice = Dice()
+
+first_roll = dice.roll() + dice.roll()
+print(f"First roll: {first_roll}")
+
+if first_roll in [7, 11]:
+    print("Pass wins!!!")
+elif first_roll in [2, 3, 12]:
+    print("Don't pass wins !")
+else:
+    target_number = first_roll
+    print(f" Hit {target_number}, pass wins!! ")
+
+    roll_count = 1
+    while True:
+        roll_count += 1
+        roll_value = dice.roll() + dice.roll()
+        print(f"Roll {roll_count}: {roll_value}")
+        if roll_value == target_number:
+            print("Pass!")
+            break
+        elif roll_value == 7:
+            print("Seven out!")
+            break

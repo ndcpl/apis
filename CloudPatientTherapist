@@ -1,1 +1,28 @@
+##After successfully create Amazon EC2 instance
+##Website created using PHP, contains several web pages for login/check lists
+##OS using Ubuntu container
 
+
+#Step 1 - Install Apache Webserver
+```sudo apt - get update```
+```sudo apt - get install apache2```
+
+
+#Step 2 - Config Firewall
+```sudo ufw allow 22/tcp```
+```sudo ufw allow 80/tcp```
+```sudo ufw allow 443/tcp```
+
+
+#Step 3 - Navigate to the Apache web root directory
+```cd /var/www/html```
+
+#Step 4 - Check the list
+```ls```
+
+Step 5 - Copy website files(php) to Apache root directory
+```scp -r path/to/local/php/files/user@ec2-3-142-219-139.us-east-2.compute.amazonaws.com:/var/www/html/```
+
+
+
+##Complete steps above, we are able to access website by visting the ip address of the instance in the web server

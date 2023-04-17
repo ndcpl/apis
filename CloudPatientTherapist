@@ -26,3 +26,4 @@ Step 5 - Copy website files(php) to Apache root directory
 
 
 ##Complete steps above, we are able to access website by visting the ip address of the instance in the web server
+##URL: http://ec2-3-142-219-139.us-east-2.compute.amazonaws.com/Online-Appointment-Booking-System-master/cover.php
